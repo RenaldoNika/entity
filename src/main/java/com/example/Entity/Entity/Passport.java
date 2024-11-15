@@ -1,4 +1,4 @@
-package com.example.Entity;
+package com.example.Entity.Entity;
 
 import jakarta.persistence.*;
 
@@ -11,10 +11,9 @@ public class Passport {
 
     private String passportNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = true)
     private Person person;
-
 
     public Long getId() {
         return id;

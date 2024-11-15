@@ -1,5 +1,6 @@
-package com.example.Entity;
+package com.example.Entity.Entity;
 
+import com.example.Entity.Entity.Passport;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public class Person {
 
     private String name;
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private Passport passport;
 
 
