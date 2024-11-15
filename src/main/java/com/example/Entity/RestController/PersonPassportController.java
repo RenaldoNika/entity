@@ -26,18 +26,12 @@ public class PersonPassportController {
     public ResponseEntity<String>save(@RequestParam long idPerson,@RequestParam long idPassport){
         Person person= personService.findById(idPassport)
                 .orElseThrow(()->new PersonNotFoundException(idPerson+" not found"));
-
         Passport passport=passportService.findbyId(idPassport)
                 .orElseThrow(()->new PassportNotFoundException(idPassport+" not found"));
-
         person.setPassport(passport);
-
         passport.setPerson(person);
-
         personService.create(person);
         passportService.save(passport);
-
-
         return ResponseEntity.ok("Done");
     }
 }

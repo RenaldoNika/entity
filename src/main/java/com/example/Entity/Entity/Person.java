@@ -12,7 +12,7 @@ public class Person {
 
     private String name;
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private Passport passport;
 
 
