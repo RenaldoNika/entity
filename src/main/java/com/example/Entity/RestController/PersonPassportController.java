@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 public class PersonPassportController {
@@ -24,14 +26,16 @@ public class PersonPassportController {
 
     @PostMapping("/link")
     public ResponseEntity<String>save(@RequestParam long idPerson,@RequestParam long idPassport){
-        Person person= personService.findById(idPassport)
+        Person person= personService.findById(idPerson)
                 .orElseThrow(()->new PersonNotFoundException(idPerson+" not found"));
         Passport passport=passportService.findbyId(idPassport)
                 .orElseThrow(()->new PassportNotFoundException(idPassport+" not found"));
+
+        List<Person>personList=new ArrayList<>();
+        personList.add(person);
         person.setPassport(passport);
-        passport.setPerson(person);
-        personService.create(person);
-        passportService.save(passport);
+
+        personService.save(person);
         return ResponseEntity.ok("Done");
     }
 }

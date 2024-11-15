@@ -2,6 +2,8 @@ package com.example.Entity.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 @Entity
 public class Passport {
 
@@ -11,9 +13,8 @@ public class Passport {
 
     private String passportNumber;
 
-    @OneToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = true)
-    private Person person;
+    @OneToMany(mappedBy = "passport", cascade = CascadeType.ALL)
+    private List<Person> persons = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class Passport {
         this.passportNumber = passportNumber;
     }
 
-    public Person getPerson() {
-        return person;
+    public List<Person> getPersons() {
+        return persons;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
     }
 }

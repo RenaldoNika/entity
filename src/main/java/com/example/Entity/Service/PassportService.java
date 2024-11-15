@@ -21,6 +21,10 @@ public class PassportService {
         return passport;
     }
 
+    public void deleteById(Long id) {
+        passaportRepository.deleteById(id);
+    }
+
     public Optional<Passport> findbyId(Long id) {
         return passaportRepository.findById(id);
     }

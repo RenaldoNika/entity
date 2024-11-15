@@ -16,15 +16,24 @@ public class PersonController {
 
     @PostMapping("/person/save")
     public ResponseEntity<Person>save(@RequestBody Person person){
-        personService.create(person);
+        personService.save(person);
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
+    @DeleteMapping("del/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        personService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
+    @GetMapping("/person")
+    public ResponseEntity<?> getPersonById(@RequestParam Long id) {
         Person person = personService.findById(id)
                 .orElseThrow(() -> new PersonNotFoundException("Person not found with ID: " + id));
-        return ResponseEntity.ok(person);
+        return ResponseEntity.ok(person.getName());
     }
 
 

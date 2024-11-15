@@ -16,7 +16,7 @@ public class PersonService {
     PersonRepository personRepository;
 
 
-    public Person create(Person person) {
+    public Person save(Person person) {
         Person person1 = personRepository.save(person);
         return person1;
     }
@@ -24,6 +24,10 @@ public class PersonService {
     public Optional<Person> findById(Long id) {
         Optional<Person> person = personRepository.findById(id);
         return person;
+    }
+
+    public void deleteById(Long id){
+        personRepository.deleteById(id);
     }
 
 }

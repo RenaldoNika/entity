@@ -1,6 +1,5 @@
 package com.example.Entity.Entity;
 
-import com.example.Entity.Entity.Passport;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,10 +8,9 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "passport_id", referencedColumnName = "id")
     private Passport passport;
 
 
@@ -32,11 +30,11 @@ public class Person {
         this.name = name;
     }
 
-    public Passport getPassport() {
-        return passport;
-    }
-
     public void setPassport(Passport passport) {
         this.passport = passport;
+    }
+
+    public Passport getPassport() {
+        return passport;
     }
 }
