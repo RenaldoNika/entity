@@ -20,11 +20,12 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
+
+    @GetMapping("/person")
+    public ResponseEntity<?> getPersonById(@RequestParam Long id) {
         Person person = personService.findById(id)
                 .orElseThrow(() -> new PersonNotFoundException("Person not found with ID: " + id));
-        return ResponseEntity.ok(person);
+        return ResponseEntity.ok(person.getName());
     }
 
 
