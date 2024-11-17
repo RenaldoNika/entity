@@ -26,13 +26,16 @@ public class PersonPassportController {
 
     @PostMapping("/link")
     public ResponseEntity<String>save(@RequestParam long idPerson,@RequestParam long idPassport){
+
         Person person= personService.findById(idPerson)
                 .orElseThrow(()->new PersonNotFoundException(idPerson+" not found"));
         Passport passport=passportService.findbyId(idPassport)
                 .orElseThrow(()->new PassportNotFoundException(idPassport+" not found"));
 
+
         List<Person>personList=new ArrayList<>();
         personList.add(person);
+
         person.setPassport(passport);
 
         personService.save(person);

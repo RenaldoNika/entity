@@ -15,7 +15,7 @@ public class PersonController {
     PersonService personService;
 
     @PostMapping("/person/save")
-    public ResponseEntity<Person>save(@RequestBody Person person){
+    public ResponseEntity<Person> save(@RequestBody Person person) {
         personService.save(person);
         return ResponseEntity.ok(person);
     }
@@ -25,6 +25,13 @@ public class PersonController {
         Person person = personService.findById(id)
                 .orElseThrow(() -> new PersonNotFoundException("Person not found with ID: " + id));
         return ResponseEntity.ok(person);
+    }
+
+
+    @DeleteMapping("/del/{id}")
+    public ResponseEntity<Void> del(@PathVariable Long id) {
+        personService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 
