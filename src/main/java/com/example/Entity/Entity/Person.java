@@ -1,6 +1,7 @@
 package com.example.Entity.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 
 @Entity
 public class Person {
@@ -9,6 +10,11 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+
+    @Min(value = 18, message = "Mosha minimale duhet të jetë 18 vjeç.")
+    private int age;
+
     @ManyToOne
     @JoinColumn(name = "passport_id", referencedColumnName = "id")
     private Passport passport;
@@ -36,5 +42,13 @@ public class Person {
 
     public Passport getPassport() {
         return passport;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 }
