@@ -28,6 +28,13 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Person> personName(@PathVariable String name) {
+        Person person = personService.findByName(name);
+        return ResponseEntity.ok(person);
+
+    }
+
     @DeleteMapping("/del/{id}")
     public ResponseEntity<Void> del(@PathVariable Long id) {
         personService.deleteById(id);

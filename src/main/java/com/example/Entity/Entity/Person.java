@@ -9,8 +9,8 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
 
+    private String name;
 
     @Min(value = 18, message = "Mosha minimale duhet të jetë 18 vjeç.")
     private int age;
