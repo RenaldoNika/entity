@@ -12,9 +12,9 @@ import java.util.Optional;
 @Service
 public class PersonService {
 
+   @Autowired
+   PersonRepository personRepository;
 
-    @Autowired
-    PersonRepository personRepository;
 
 
     public Person findByName(String name) {
@@ -27,9 +27,9 @@ public class PersonService {
         return person1;
     }
 
-    public Optional<Person> findById(Long id) {
-        Optional<Person> person = personRepository.findById(id);
-        return person;
+    public Person findById(Long id) {
+      return personRepository.findById(id).orElseThrow(()
+                -> new PersonNotFoundException("Person not found with ID: " + id));
     }
 
     public void deleteById(Long id) {

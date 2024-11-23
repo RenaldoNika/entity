@@ -2,6 +2,7 @@ package com.example.Entity.Service;
 
 
 import com.example.Entity.Entity.Passport;
+import com.example.Entity.ExceptionHandler.PassportNotFoundException;
 import com.example.Entity.Repository.PassaportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,11 @@ public class PassportService {
         passaportRepository.deleteById(id);
     }
 
-    public Optional<Passport> findbyId(Long id) {
-        return passaportRepository.findById(id);
+    public Passport findbyId(Long id) {
+
+        return passaportRepository.findById(id)
+                .orElseThrow(() -> new PassportNotFoundException("Not found : " + id));
+
+
     }
 }

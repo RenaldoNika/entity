@@ -28,8 +28,7 @@ public class PassportController {
 
     @GetMapping("/pass/{id}")
     public ResponseEntity<Passport> findbyId(@PathVariable Long id) {
-        Passport passport = passportService.findbyId(id)
-                .orElseThrow(() -> new PassportNotFoundException(id + " Not Found"));
+        Passport passport = passportService.findbyId(id);
         return ResponseEntity.ok(passport);
     }
 
