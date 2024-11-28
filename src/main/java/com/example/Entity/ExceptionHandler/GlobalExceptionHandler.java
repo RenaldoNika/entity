@@ -14,6 +14,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
 
+
     @ExceptionHandler(PersonNotFoundException.class)
     public ResponseEntity<String> handlePersonNotFoundException(PersonNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -26,6 +27,11 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(PassportNotFoundException.class)
+    public ResponseEntity<String>handlePassportNotFoundException(PassportNotFoundException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ex.getMessage());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -34,8 +40,7 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage())
         );
-
-        return ResponseEntity.badRequest().body(errors);
+ return ResponseEntity.badRequest().body(errors);
 
     }
 }

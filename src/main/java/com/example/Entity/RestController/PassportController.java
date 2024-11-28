@@ -3,6 +3,7 @@ package com.example.Entity.RestController;
 
 import com.example.Entity.Entity.Passport;
 import com.example.Entity.ExceptionHandler.PassportNotFoundException;
+import com.example.Entity.Mesime.Personi;
 import com.example.Entity.Service.PassportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ public class PassportController {
 
     @Autowired
     PassportService passportService;
+
+
 
     @PostMapping("/pass/save")
     public ResponseEntity<Passport> save(@RequestBody Passport passport) {

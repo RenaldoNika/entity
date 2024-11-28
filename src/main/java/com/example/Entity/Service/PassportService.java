@@ -7,11 +7,9 @@ import com.example.Entity.Repository.PassaportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class PassportService {
-
 
     @Autowired
     PassaportRepository passaportRepository;
@@ -27,10 +25,7 @@ public class PassportService {
     }
 
     public Passport findbyId(Long id) {
-
         return passaportRepository.findById(id)
                 .orElseThrow(() -> new PassportNotFoundException("Not found : " + id));
-
-
     }
 }
